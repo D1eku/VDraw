@@ -1,0 +1,10 @@
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\bin\Debug\VDraw.exe.config
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\bin\Debug\VDraw.exe
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\bin\Debug\VDraw.pdb
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.csprojAssemblyReference.cache
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.MasterUIVDraw.resources
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.Properties.Resources.resources
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.csproj.GenerateResource.cache
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.csproj.CoreCompileInputs.cache
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.exe
+C:\Users\NIKO\Documents\GitHub\TallerIngSoftware\VDraw\obj\Debug\VDraw.pdb
