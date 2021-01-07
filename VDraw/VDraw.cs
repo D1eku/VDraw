@@ -90,22 +90,33 @@ namespace VDraw
         /*Esta funcion es para cargar o abrir un archivo con formato .vdraw */
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            OpenFileDialog open = new OpenFileDialog();//Abre un nuevo cuadro de dialogo para abrir archivo
+            open.Filter = "VDraw Files | *.vdraw";//Define el filtro de archivos que mostrara, es decir los formatos en este caso solo "vdraw"
+            
+            if(open.ShowDialog() == DialogResult.OK)//Si se eligio el archivo a abrir y se pulso aceptar, entonces...
+            {
+                //Cargalo
+            }
         }
 
         /*Esta funcion es para guardar un archivo con formato .vdraw Es decir, para guardar proyectos*/
         private void GuardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveFileDialog save = new SaveFileDialog();//Crea un cuadro de dialogo para guardar archivo
+            save.Filter = "VDraw files| *.vdraw";//Los formatos permitidos son
 
+            if(save.ShowDialog() == DialogResult.OK)//Si se pulso aceptar.
+            {
+                //Hace las cosas para guardar el archivo.
+            }
         }
 
-        private static Image PanelToBitmap(Control pnl)
+        
+        /*Limpia el lienzo para empezar a dibujar nuevamente. */
+        private void NuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var bmp = new Bitmap(pnl.Width, pnl.Height);
-            pnl.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-            return bmp;
+            this.vDraw.NewPaint();
         }
-
 
         /* Esta funcion exporta el dibujo a un archivo png o jpg como foto */
         private void ExportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -119,7 +130,7 @@ namespace VDraw
             SaveFileDialog save = new SaveFileDialog();//Crea un cuadro de dialogo para guardar archivo
             save.Filter = "Png files| *.png| jpeg files| *jpg";//Los formatos permitidos son
 
-            if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)//Si se apreto save, entonces
+            if (save.ShowDialog() == DialogResult.OK)//Si se apreto save, entonces
             {
                 try
                 {
@@ -195,10 +206,13 @@ namespace VDraw
         {
             shapeSelected = 8;
         }
-
-        private void NuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        //Funcion que convierte un panel a BitMap y retorna el Objeto Image
+        private static Image PanelToBitmap(Control pnl)
         {
-            this.vDraw.NewPaint();
+            var bmp = new Bitmap(pnl.Width, pnl.Height);
+            pnl.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+            return bmp;
         }
+
     }
 }
