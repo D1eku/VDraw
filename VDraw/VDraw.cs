@@ -213,6 +213,5 @@ namespace VDraw
             pnl.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
             return bmp;
         }
-
     }
 }
