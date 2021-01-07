@@ -12,10 +12,12 @@ namespace VDraw
     {
         private List<VDWFigure> figures;
         private Graphics canvas;
+        private Panel panelCanvas;
 
         public VDrawImpl(Panel p)
         {
             figures = new List<VDWFigure>();
+            panelCanvas = p;//Almacena el panel que se utiliza como lienzo.
             canvas = p.CreateGraphics();
             canvas.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             canvas.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
@@ -75,6 +77,15 @@ namespace VDraw
             p.Y = (int)(Math.Sin(-radians) * radius + center.Y);
 
             return p;
+        }
+
+        public void NewPaint()
+        {
+            //Limpa la lista de figuras.
+            //Pinta el background blanco.
+            panelCanvas.BackColor = Color.Transparent;
+            panelCanvas.BackColor = Color.White;
+
         }
     }
 }

@@ -42,13 +42,14 @@ namespace VDraw
             this.panelCanvas = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.asadasdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ArchivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asdasdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.guardarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deshacerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rehacerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelFiguras.SuspendLayout();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -65,9 +66,9 @@ namespace VDraw
             this.panelFiguras.Controls.Add(this.squareButton);
             this.panelFiguras.Controls.Add(this.buttonCircle);
             this.panelFiguras.Controls.Add(this.botonTriangulo);
-            this.panelFiguras.Location = new System.Drawing.Point(13, 36);
+            this.panelFiguras.Location = new System.Drawing.Point(12, 36);
             this.panelFiguras.Name = "panelFiguras";
-            this.panelFiguras.Size = new System.Drawing.Size(200, 551);
+            this.panelFiguras.Size = new System.Drawing.Size(201, 551);
             this.panelFiguras.TabIndex = 0;
             // 
             // hexagonButton
@@ -78,7 +79,7 @@ namespace VDraw
             this.hexagonButton.TabIndex = 8;
             this.hexagonButton.Text = "Hexagono";
             this.hexagonButton.UseVisualStyleBackColor = true;
-            this.hexagonButton.Click += new System.EventHandler(this.hexagonButton_Click);
+            this.hexagonButton.Click += new System.EventHandler(this.ButtonHexagon_Click);
             // 
             // diamondButton
             // 
@@ -88,7 +89,7 @@ namespace VDraw
             this.diamondButton.TabIndex = 7;
             this.diamondButton.Text = "Rombo";
             this.diamondButton.UseVisualStyleBackColor = true;
-            this.diamondButton.Click += new System.EventHandler(this.diamondButton_Click);
+            this.diamondButton.Click += new System.EventHandler(this.ButtonDiamond_Click);
             // 
             // labelFigurasInPanelFiguras
             // 
@@ -108,7 +109,7 @@ namespace VDraw
             this.buttonEllipse.TabIndex = 5;
             this.buttonEllipse.Text = "Elipse";
             this.buttonEllipse.UseVisualStyleBackColor = true;
-            this.buttonEllipse.Click += new System.EventHandler(this.buttonEllipse_Click);
+            this.buttonEllipse.Click += new System.EventHandler(this.ButtonEllipse_Click);
             // 
             // buttonPentagono
             // 
@@ -118,7 +119,7 @@ namespace VDraw
             this.buttonPentagono.TabIndex = 4;
             this.buttonPentagono.Text = "Pentagono";
             this.buttonPentagono.UseVisualStyleBackColor = true;
-            this.buttonPentagono.Click += new System.EventHandler(this.buttonPentagono_Click);
+            this.buttonPentagono.Click += new System.EventHandler(this.ButtonPentagon_Click);
             // 
             // buttonRectangulo
             // 
@@ -128,7 +129,7 @@ namespace VDraw
             this.buttonRectangulo.TabIndex = 3;
             this.buttonRectangulo.Text = "Rectangulo";
             this.buttonRectangulo.UseVisualStyleBackColor = true;
-            this.buttonRectangulo.Click += new System.EventHandler(this.buttonRectangulo_Click);
+            this.buttonRectangulo.Click += new System.EventHandler(this.ButtonRect_Click);
             // 
             // squareButton
             // 
@@ -138,7 +139,7 @@ namespace VDraw
             this.squareButton.TabIndex = 2;
             this.squareButton.Text = "Cuadrado";
             this.squareButton.UseVisualStyleBackColor = true;
-            this.squareButton.Click += new System.EventHandler(this.squareButton_Click);
+            this.squareButton.Click += new System.EventHandler(this.ButtonSquare_Click);
             // 
             // buttonCircle
             // 
@@ -148,7 +149,7 @@ namespace VDraw
             this.buttonCircle.TabIndex = 1;
             this.buttonCircle.Text = "Circulo";
             this.buttonCircle.UseVisualStyleBackColor = true;
-            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
+            this.buttonCircle.Click += new System.EventHandler(this.ButtonCircle_Click);
             // 
             // botonTriangulo
             // 
@@ -158,15 +159,15 @@ namespace VDraw
             this.botonTriangulo.TabIndex = 0;
             this.botonTriangulo.Text = "Triangulo";
             this.botonTriangulo.UseVisualStyleBackColor = true;
-            this.botonTriangulo.Click += new System.EventHandler(this.botonTriangulo_Click);
+            this.botonTriangulo.Click += new System.EventHandler(this.ButtonTriangle_Click);
             // 
             // panelCanvas
             // 
             this.panelCanvas.BackColor = System.Drawing.Color.White;
             this.panelCanvas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelCanvas.Location = new System.Drawing.Point(221, 36);
+            this.panelCanvas.Location = new System.Drawing.Point(219, 36);
             this.panelCanvas.Name = "panelCanvas";
-            this.panelCanvas.Size = new System.Drawing.Size(747, 551);
+            this.panelCanvas.Size = new System.Drawing.Size(783, 551);
             this.panelCanvas.TabIndex = 1;
             this.panelCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseDown);
             this.panelCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseUp);
@@ -176,58 +177,60 @@ namespace VDraw
             this.panel1.Controls.Add(this.menuStrip1);
             this.panel1.Location = new System.Drawing.Point(3, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(975, 29);
+            this.panel1.Size = new System.Drawing.Size(999, 29);
             this.panel1.TabIndex = 2;
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.asadasdToolStripMenuItem,
-            this.editarToolStripMenuItem});
+            this.ArchivoToolStripMenuItem,
+            this.EditarToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(975, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(999, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // asadasdToolStripMenuItem
+            // ArchivoToolStripMenuItem
             // 
-            this.asadasdToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ArchivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nuevoToolStripMenuItem,
             this.asdasdToolStripMenuItem,
             this.guardarToolStripMenuItem,
             this.exportarToolStripMenuItem});
-            this.asadasdToolStripMenuItem.Name = "asadasdToolStripMenuItem";
-            this.asadasdToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.asadasdToolStripMenuItem.Text = "Archivo";
-            this.asadasdToolStripMenuItem.Click += new System.EventHandler(this.asadasdToolStripMenuItem_Click);
+            this.ArchivoToolStripMenuItem.Name = "ArchivoToolStripMenuItem";
+            this.ArchivoToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.ArchivoToolStripMenuItem.Text = "Archivo";
             // 
             // asdasdToolStripMenuItem
             // 
             this.asdasdToolStripMenuItem.Name = "asdasdToolStripMenuItem";
             this.asdasdToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.asdasdToolStripMenuItem.Text = "Abrir";
-            this.asdasdToolStripMenuItem.Click += new System.EventHandler(this.asdasdToolStripMenuItem_Click);
+            this.asdasdToolStripMenuItem.Click += new System.EventHandler(this.AbrirToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
             this.guardarToolStripMenuItem.Name = "guardarToolStripMenuItem";
             this.guardarToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.guardarToolStripMenuItem.Text = "Guardar";
+            this.guardarToolStripMenuItem.Click += new System.EventHandler(this.GuardarToolStripMenuItem_Click);
             // 
             // exportarToolStripMenuItem
             // 
             this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
             this.exportarToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.exportarToolStripMenuItem.Text = "Exportar";
+            this.exportarToolStripMenuItem.Click += new System.EventHandler(this.ExportToolStripMenuItem_Click);
             // 
-            // editarToolStripMenuItem
+            // EditarToolStripMenuItem
             // 
-            this.editarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.EditarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deshacerToolStripMenuItem,
             this.rehacerToolStripMenuItem});
-            this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.editarToolStripMenuItem.Text = "Editar";
+            this.EditarToolStripMenuItem.Name = "EditarToolStripMenuItem";
+            this.EditarToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.EditarToolStripMenuItem.Text = "Editar";
             // 
             // deshacerToolStripMenuItem
             // 
@@ -241,18 +244,24 @@ namespace VDraw
             this.rehacerToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.rehacerToolStripMenuItem.Text = "Rehacer";
             // 
+            // nuevoToolStripMenuItem
+            // 
+            this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
+            this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nuevoToolStripMenuItem.Text = "Nuevo";
+            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.NuevoToolStripMenuItem_Click);
+            // 
             // MasterUIVDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 599);
+            this.ClientSize = new System.Drawing.Size(1012, 598);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelCanvas);
             this.Controls.Add(this.panelFiguras);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MasterUIVDraw";
             this.Text = "VDraw";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.panelFiguras.ResumeLayout(false);
             this.panelFiguras.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -275,16 +284,17 @@ namespace VDraw
         private System.Windows.Forms.Panel panelCanvas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem asadasdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ArchivoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asdasdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem guardarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportarToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deshacerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rehacerToolStripMenuItem;
         private System.Windows.Forms.Label labelFigurasInPanelFiguras;
         private System.Windows.Forms.Button hexagonButton;
         private System.Windows.Forms.Button diamondButton;
+        private System.Windows.Forms.ToolStripMenuItem nuevoToolStripMenuItem;
     }
 }
 
