@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace VDraw
 {
@@ -13,14 +14,18 @@ namespace VDraw
         private Color fillColor;
         private float lineSize;
         private bool isDrag;
+        private bool Selected;
         private Point center;
+        private GraphicsPath gp;
 
-        protected VDWFigure(Color lineColor, Color fillColor, float lineSize, Point center)
+        protected VDWFigure(Color lineColor, Color fillColor, float lineSize, Point center, GraphicsPath gp)
         {
+            this.gp = gp;
             this.lineColor = lineColor;
             this.fillColor = fillColor;
             this.lineSize = lineSize;
             this.isDrag = false;
+            this.Selected = false;
             this.center = center;
         }
         public Color GetLineColor()
@@ -63,5 +68,25 @@ namespace VDraw
         {
             this.center = center;
         }
+        public bool IsSelected(Point p)
+        {
+            Selected = gp.IsVisible(p);
+            return Selected;
+        }
+        public bool IsSelected()
+        {
+            return Selected;
+        }
+
+        public abstract void Move(Point center);
+
+        public GraphicsPath GetGraphicsPath()
+        {
+            return gp;
+        }
+
+        public void SetGraphicsPath(GraphicsPath gp) { this.gp = gp; }
+
+        public void SetSelected(bool state) { this.Selected = false; }
     }
 }

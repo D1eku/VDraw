@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace VDraw
 {
@@ -13,48 +14,51 @@ namespace VDraw
         private List<VDWFigure> figures;
         private Graphics canvas;
         private Panel panelCanvas;
+        private int penSize = 100;
+        private Color penColor = Color.Black;
+        private Pen pen;
+        private Color brushColor = Color.White;
+        private SolidBrush brush;
+        private VDWFigure selectedShape = null;
 
         public VDrawImpl(Panel p)
         {
             figures = new List<VDWFigure>();
             panelCanvas = p;//Almacena el panel que se utiliza como lienzo.
             canvas = p.CreateGraphics();
-            canvas.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            canvas.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            pen = new Pen(penColor, penSize);
+            brush = new SolidBrush(brushColor);
+            canvas.SmoothingMode = SmoothingMode.AntiAlias;
+            canvas.SmoothingMode = SmoothingMode.HighQuality;
         }
         public void DrawRectangle(Color lineColor, Color fillColor, float lineSize, Point center, float width, float height)
         {
-            VDWRectangle r = new VDWRectangle(lineColor, fillColor, lineSize, center, width, height);
+            GraphicsPath gp = new GraphicsPath();//Crea un nuevo graphics path
+            gp.StartFigure();//Comienza a dibujar
+            RectangleF rect = new RectangleF(center.X - width, center.Y - height, 2 * width, 2 * height);
+            gp.AddRectangle(rect);
+            gp.CloseFigure();//Termina la figura
+            VDWRectangle r = new VDWRectangle(penColor, brushColor, lineSize, center, width, height, gp);
             figures.Add(r);
-            Pen pen = new Pen(lineColor, lineSize);
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            SolidBrush brush = new SolidBrush(fillColor);
-            canvas.DrawRectangle(pen, center.X - width, center.Y - height, 2 * width, 2 * height);
-            canvas.FillRectangle(brush, center.X - width, center.Y - height, 2 * width, 2 * height);
         }
         public void DrawEllipse(Color lineColor, Color fillColor, float lineSize, Point center, float a, float b)
-        {
-            VDWEllipse e = new VDWEllipse(lineColor, fillColor, lineSize, center, a, b);
-            figures.Add(e);
-            Pen pen = new Pen(lineColor, lineSize);
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            SolidBrush brush = new SolidBrush(fillColor);
-            canvas.DrawEllipse(pen, center.X - a, center.Y - b, 2 * a, 2 * b);
-            canvas.FillEllipse(brush, center.X - a, center.Y - b, 2 * a, 2 * b);
+        {//Al dibujar una elipse
+            //Pen pen = new Pen(lineColor, lineSize);//DEFINE el color de la linea y el tamaño de la linea.
+            GraphicsPath gp = new GraphicsPath();//Crea un nuevo graphics path
+            gp.StartFigure();//Comienza a dibujar
+            gp.AddEllipse(center.X - a, center.Y - b, 2 * a, 2 * b);//Dibuja
+            gp.CloseFigure();//Termina la figura
+            VDWEllipse e = new VDWEllipse(penColor, brushColor, lineSize, center, a, b, gp);//Crea un nuevo objeto para almacenar la figura y sus datos
+            figures.Add(e);//Agrega la figura a la lista de figuras.
         }
         public void DrawPolygon(Color lineColor, Color fillColor, float lineSize, Point center, float radius, float startAngle, int sides)
-        {
-            VDWPolygon p = new VDWPolygon(lineColor, fillColor, lineSize, center, radius, startAngle, sides);
-            figures.Add(p);
-            Pen pen = new Pen(lineColor, lineSize);
-            pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-            pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
-            SolidBrush brush = new SolidBrush(fillColor);
-            Point[] vertices = CalculateVertices(startAngle, radius, center, sides);
-            canvas.DrawPolygon(pen, vertices);
-            canvas.FillPolygon(brush, vertices);
+        {//Al dibujar un polygono
+            GraphicsPath gp = new GraphicsPath();//crea un nuevo graphics path
+            gp.StartFigure();//Comienza a dibujar
+            gp.AddPolygon(CalculateVertices(startAngle, radius, center, sides));//Dibuja un polygono por cada vertice
+            gp.CloseFigure();//Termina de dibujar
+            VDWPolygon p = new VDWPolygon(penColor, brushColor, lineSize, center, radius, startAngle, sides, gp);
+            p.SetSelected(true); figures.Add(p);//Agrega la figura a la lista de figuras.
         }
         private Point[] CalculateVertices(float startAngle, float radius, Point center, int sides)
         {
@@ -78,14 +82,67 @@ namespace VDraw
 
             return p;
         }
-
         public void NewPaint()
         {
-            //Limpa la lista de figuras.
-            //Pinta el background blanco.
-            panelCanvas.BackColor = Color.Transparent;
-            panelCanvas.BackColor = Color.White;
-
+            figures.Clear();//Elimina todas las figuras que hay en la lista
         }
+        public bool IsTouchingShape(Point mouseClick)
+        {
+            for(int i = 0; i<this.figures.Count; i++)//Con cada figura que haya 
+            {
+                VDWFigure f = figures.ElementAt<VDWFigure>(i);//toma la i-esima figura
+                if (f.IsSelected(mouseClick))//revisa si esa figura es tocada en el punto indicado
+                {//Si lo es entonces
+                    selectedShape = f;
+                    return true;//Retorna si
+                }
+            }
+            selectedShape = null;
+            return false;//Si no tocaste ninguna figura retorna que no.
+        }
+        public void RePaint()
+        {
+            for (int i = 0; i < this.figures.Count; i++)
+            {
+                VDWFigure f = figures.ElementAt<VDWFigure>(i);
+                GraphicsPath gp = f.GetGraphicsPath();
+                canvas.DrawPath(new Pen(f.GetLineColor(), f.GetLineSize()), gp);
+            }
+        }
+        public void MoveShape(Point x)
+        {
+            VDWFigure f = selectedShape;
+
+            if(f != null)//Si hay una figura, muevela.
+            {
+                f.Move(x);
+            }
+            else
+            {
+                return;
+            }
+        }
+        public void DeselectFigures()
+        {
+            for (int i = 0; i < this.figures.Count; i++)
+            {
+                VDWFigure f = figures.ElementAt<VDWFigure>(i);//Por cada figura
+                if (f.IsSelected())//Si tienes una figura seleccionada 
+                {
+                    f.SetSelected(false);
+                }
+            }
+        }
+        public bool HaveSelected() { return selectedShape != null; }
+        public void DeselectShape() { selectedShape = null; }
+        public void ChangeColorPen(Color color)
+        {
+            penColor = color;
+        }
+        public void ChangeColorBrush(Color color)
+        {
+            brushColor = color;
+        }
+
     }
 }
