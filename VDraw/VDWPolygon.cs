@@ -79,5 +79,10 @@ namespace VDraw
 
             return p;
         }
+        public string ToString()
+        {
+            return "P," + this.GetLineColor().ToArgb() + "," + this.GetFillColor().ToArgb() + "," + this.GetLineSize() + "," + this.GetCenter().X + "," + this.GetCenter().Y
+                + "," + this.radius + "," + this.startAngle + "," + this.sides;
+        }
     }
 }

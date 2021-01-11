@@ -19,7 +19,8 @@ namespace VDraw
         void DeselectFigures();
         bool HaveSelected();
         void DeselectShape();
-        void ChangeColorPen(Color color);
-        void ChangeColorBrush(Color color);
+        string SaveFile();
+        void OpenFile(string file);
+        void RegisterKey();
     }
 }

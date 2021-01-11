@@ -13,7 +13,6 @@ namespace VDraw
         private Color lineColor;
         private Color fillColor;
         private float lineSize;
-        private bool isDrag;
         private bool Selected;
         private Point center;
         private GraphicsPath gp;
@@ -24,7 +23,6 @@ namespace VDraw
             this.lineColor = lineColor;
             this.fillColor = fillColor;
             this.lineSize = lineSize;
-            this.isDrag = false;
             this.Selected = false;
             this.center = center;
         }
@@ -39,10 +37,6 @@ namespace VDraw
         public float GetLineSize()
         {
             return this.lineSize;
-        }
-        public bool IsDrag()
-        {
-            return isDrag;
         }
         public Point GetCenter()
         {
@@ -59,10 +53,6 @@ namespace VDraw
         public void ChangeLineSize(float lineSize)
         {
             this.lineSize = lineSize;
-        }
-        public void OnDrag(bool isDrag)
-        {
-            this.isDrag = isDrag;
         }
         public void ChangeCenter(Point center)
         {

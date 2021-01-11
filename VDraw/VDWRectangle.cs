@@ -48,5 +48,10 @@ namespace VDraw
                 gp.CloseFigure();//Termina la figura
             }
         }
+        public string ToString()
+        {
+            return "R," + this.GetLineColor().ToArgb() + "," + this.GetFillColor().ToArgb() + "," + this.GetLineSize() + "," + this.GetCenter().X + "," + this.GetCenter().Y
+                + "," + this.width + "," + this.height;
+        }
     }
 }

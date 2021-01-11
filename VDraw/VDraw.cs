@@ -19,7 +19,9 @@ namespace VDraw
         int mouseX;
         int mouseY;
         bool mouseDown;
-        bool Drawing = false;
+        bool Drawing;
+        bool isSave;
+        Color lineColor, fillColor;
 
         public MasterUIVDraw()
         {
@@ -29,6 +31,10 @@ namespace VDraw
             mouseX = 0;
             mouseY = 0;
             mouseDown = false;
+            lineColor = Color.Black;
+            fillColor = Color.Transparent;
+            Drawing = false;
+            isSave = false;
         }
 
         private void panelCanvas_MouseDown(object sender, MouseEventArgs e)//Cuando haces click
@@ -50,7 +56,6 @@ namespace VDraw
             Point p = new Point(e.X, e.Y);//Genera un punto
             if (mouseDown)//Si se esta haciendo click
             {
-                Console.WriteLine("dENTRO de mouse move, la interfaz tiene figura seleccionada : "+vDraw.HaveSelected());
                 if (vDraw.HaveSelected())// Y tienes una figura seleccionada.
                 {
                     vDraw.MoveShape(p);//Muevela.
@@ -65,54 +70,55 @@ namespace VDraw
             if (e.Button == MouseButtons.Left)
             {
                 mouseDown = false;
+                isSave = false;
                 if (Drawing)//Si estas dibujando.
                 {
                     // Circle
                     if (shapeSelected == 1)
                     {
-                        vDraw.DrawEllipse(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 45f, 45f);
+                        vDraw.DrawEllipse(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 45f);
                         
                     }
                     //Ellipse
                     else if (shapeSelected == 2)
                     {
-                        vDraw.DrawEllipse(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 60f, 30f);
+                        vDraw.DrawEllipse(lineColor, fillColor, 6, new Point(mouseX, mouseY), 60f, 30f);
                         
                     }
                     //Square
                     else if (shapeSelected == 3)
                     {
-                        vDraw.DrawRectangle(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 45f, 45f);
+                        vDraw.DrawRectangle(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 45f);
                         
                     }
                     //Rectangle
                     else if (shapeSelected == 4)
                     {
-                        vDraw.DrawRectangle(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 60f, 30f);
+                        vDraw.DrawRectangle(lineColor, fillColor, 6, new Point(mouseX, mouseY), 60f, 30f);
                         
                     }
                     //Diamond
                     else if (shapeSelected == 5)
                     {
-                        vDraw.DrawPolygon(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 45f, 0f, 4);
+                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 0f, 4);
                         
                     }
                     //Triangle
                     else if (shapeSelected == 6)
                     {
-                        vDraw.DrawPolygon(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 45f, 90f, 3);
+                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 90f, 3);
                         
                     }
                     //Pentagon
                     else if (shapeSelected == 7)
                     {
-                        vDraw.DrawPolygon(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 45f, 18.5f, 5);
+                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 18.5f, 5);
                        
                     }
                     //Hexagon
                     else
                     {
-                        vDraw.DrawPolygon(Color.Black, Color.Transparent, 6, new Point(mouseX, mouseY), 45f, 0f, 6);
+                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 0f, 6);
                         
                     }
                     Drawing = false;//Deja de dibujar.
@@ -128,35 +134,104 @@ namespace VDraw
             vDraw.RePaint();
         }
 
-        /*Esta funcion es para cargar o abrir un archivo con formato .vdraw */
+        /*Esta funcion es para cargar o abrir un archivo con formato .vdw */
         private void AbrirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog open = new OpenFileDialog();//Abre un nuevo cuadro de dialogo para abrir archivo
-            open.Filter = "VDraw Files | *.vdraw";//Define el filtro de archivos que mostrara, es decir los formatos en este caso solo "vdraw"
-            
-            if(open.ShowDialog() == DialogResult.OK)//Si se eligio el archivo a abrir y se pulso aceptar, entonces...
+            try
             {
-                //Cargalo
+                if (!isSave)
+                {
+                    //Mensaje para sugerir guardar el proyecto antes de abrir otro
+                    string message = "¿Quieres guardar los cambios del proyecto?";
+                    string caption = "Guardar proyecto";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+                    DialogResult result = MessageBox.Show(message, caption, buttons);//Genera un cuadro con el mensaje y los botones Si, No y Cancelar
+                    //En el caso de que quiera guardarlo
+                    if (result == DialogResult.Yes)
+                    {
+                        this.GuardarToolStripMenuItem_Click(sender, e);//Enviamos al método para guardar
+                    }
+                    //En el caso de que no se quiera guardar abrimos el nuevo proyecto
+                    else if (result == DialogResult.No)
+                    {
+                        OpenFileDialog open = new OpenFileDialog();//Abre un nuevo cuadro de dialogo para abrir archivo
+                        open.Filter = "VDraw Proyect | *.vdw";//Define el filtro de archivos que mostrara, es decir los formatos en este caso solo "vdraw"
+                        if (open.ShowDialog() == DialogResult.OK)//Si se eligio el archivo a abrir y se pulso aceptar, entonces...
+                        {
+                            vDraw.OpenFile(open.FileName);
+                        }
+                    }
+                }
+                else
+                {
+                    OpenFileDialog open = new OpenFileDialog();//Abre un nuevo cuadro de dialogo para abrir archivo
+                    open.Filter = "VDraw Proyect | *.vdw";//Define el filtro de archivos que mostrara, es decir los formatos en este caso solo "vdraw"
+                    if (open.ShowDialog() == DialogResult.OK)//Si se eligio el archivo a abrir y se pulso aceptar, entonces...
+                    {
+                        vDraw.OpenFile(open.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir el archivo: " + ex.Message);
             }
         }
 
-        /*Esta funcion es para guardar un archivo con formato .vdraw Es decir, para guardar proyectos*/
+        /*Esta funcion es para guardar un archivo con formato .vdw Es decir, para guardar proyectos*/
         private void GuardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();//Crea un cuadro de dialogo para guardar archivo
-            save.Filter = "VDraw files| *.vdraw";//Los formatos permitidos son
-
-            if(save.ShowDialog() == DialogResult.OK)//Si se pulso aceptar.
+            try
             {
-                //Hace las cosas para guardar el archivo.
+                SaveFileDialog save = new SaveFileDialog();//Crea un cuadro de dialogo para guardar archivo
+                save.Filter = "VDraw Proyect | *.vdw";//Los formatos permitidos son
+
+                if (save.ShowDialog() == DialogResult.OK)//Si se pulso aceptar.
+                {
+                    File.WriteAllText(save.FileName, vDraw.SaveFile());
+                }
+                isSave = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar el archivo: " + ex.Message);
             }
         }
 
         /*Limpia el lienzo para empezar a dibujar nuevamente. */
         private void NuevoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.vDraw.NewPaint();
-            panelCanvas.Invalidate();//Actualiza el panel
+            try
+            {
+                if (!isSave)
+                {
+                    //Mensaje para sugerir guardar el proyecto antes de abrir otro
+                    string message = "¿Quieres guardar los cambios del proyecto?";
+                    string caption = "Guardar proyecto";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+                    DialogResult result = MessageBox.Show(message, caption, buttons);//Genera un cuadro con el mensaje y los botones Si, No y Cancelar
+                    //En el caso de que quiera guardarlo
+                    if (result == DialogResult.Yes)
+                    {
+                        this.GuardarToolStripMenuItem_Click(sender, e);//Enviamos al método para guardar
+                    }
+                    //En el caso de que no se quiera guardar abrimos el nuevo proyecto
+                    else if (result == DialogResult.No)
+                    {
+                        this.vDraw.NewPaint();
+                        panelCanvas.Invalidate();//Actualiza el panel
+                    }
+                }
+                else
+                {
+                    this.vDraw.NewPaint();
+                    panelCanvas.Invalidate();//Actualiza el panel
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir un nuevo archivo: " + ex.Message);
+            }
         }
 
         /* Esta funcion exporta el dibujo a un archivo png o jpg como foto */
@@ -203,7 +278,7 @@ namespace VDraw
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("File save error : " + ex.Message);
+                    MessageBox.Show("Error al guardar el archivo : " + ex.Message);
                 }
             }
         }
@@ -265,121 +340,121 @@ namespace VDraw
 
         private void ChangeBorderColorPenBlack_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Black);
+            lineColor = Color.Black;
             this.buttonInfoColorSelected.BackColor = Color.Black;
         }
 
         private void ChangeBorderColorPenWhite_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.White);
+            lineColor = Color.White;
             this.buttonInfoColorSelected.BackColor = Color.White;
         }
 
         private void ChangeBorderColorPenRed_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Red);
+            lineColor = Color.Red;
             this.buttonInfoColorSelected.BackColor = Color.Red;
         }
 
         private void ChangeBorderColorPenGray_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Gray);
+            lineColor = Color.Gray;
             this.buttonInfoColorSelected.BackColor = Color.Gray;
         }
 
         private void ChangeBorderColorPenBrown_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Brown);
+            lineColor = Color.Brown;
             this.buttonInfoColorSelected.BackColor = Color.Brown;
         }
 
         private void ChangeBorderColorPenOrange_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Orange);
+            lineColor = Color.Orange;
             this.buttonInfoColorSelected.BackColor = Color.Orange;
         }
 
         private void ChangeBorderColorPenYellow_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Yellow);
+            lineColor = Color.Yellow;
             this.buttonInfoColorSelected.BackColor = Color.Yellow;
         }
 
         private void ChangeBorderColorPenGreen_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Green);
+            lineColor = Color.Green;
             this.buttonInfoColorSelected.BackColor = Color.Green;
         }
 
         private void ChangeBorderColorPenBlue_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Blue);
+            lineColor = Color.Blue;
             this.buttonInfoColorSelected.BackColor = Color.Blue;
         }
 
         private void ChangeBorderColorPenPurple_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorPen(Color.Purple);
+            lineColor = Color.Purple;
             this.buttonInfoColorSelected.BackColor = Color.Purple;
         }
 
         private void ChangeFilletColorPenBlack_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Black);
+            fillColor = Color.Black;
             this.buttonBrushColorSelected.BackColor = Color.Black;
         }
 
         private void ChangeFilletColorPenWhite_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.White);
+            fillColor = Color.White;
             this.buttonBrushColorSelected.BackColor = Color.White;
         }
 
         private void ChangeFilletColorPenRed_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Red);
+            fillColor = Color.Red;
             this.buttonBrushColorSelected.BackColor = Color.Red;
         }
 
         private void ChangeFilletColorPenGray_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Gray);
+            fillColor = Color.Gray;
             this.buttonBrushColorSelected.BackColor = Color.Gray;
         }
 
         private void ChangeFilletColorPenBrown_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Brown);
+            fillColor = Color.Brown;
             this.buttonBrushColorSelected.BackColor = Color.Brown;
         }
 
         private void ChangeFilletColorPenOrange_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Orange);
+            fillColor = Color.Orange;
             this.buttonBrushColorSelected.BackColor = Color.Orange;
         }
 
         private void ChangeFilletColorPenYellow_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Yellow);
+            fillColor = Color.Yellow;
             this.buttonBrushColorSelected.BackColor = Color.Yellow;
         }
 
         private void ChangeFilletColorPenGreen_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Green);
+            fillColor = Color.Green;
             this.buttonBrushColorSelected.BackColor = Color.Green;
         }
 
         private void ChangeFilletColorPenBlue_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Blue);
+            fillColor = Color.Blue;
             this.buttonBrushColorSelected.BackColor = Color.Blue;
         }
 
         private void ChangeFilletColorPenPurple_Click(object sender, EventArgs e)
         {
-            vDraw.ChangeColorBrush(Color.Purple);
+            fillColor = Color.Purple;
             this.buttonBrushColorSelected.BackColor = Color.Purple;
         }
     }
