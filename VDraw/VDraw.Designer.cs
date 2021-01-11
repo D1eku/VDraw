@@ -29,6 +29,7 @@ namespace VDraw
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterUIVDraw));
             this.panelFiguras = new System.Windows.Forms.Panel();
             this.hexagonButton = new System.Windows.Forms.Button();
             this.diamondButton = new System.Windows.Forms.Button();
@@ -41,6 +42,20 @@ namespace VDraw
             this.botonTriangulo = new System.Windows.Forms.Button();
             this.panelCanvas = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.buttonBrushColorSelected = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelRelleno = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.buttonInfoColorSelected = new System.Windows.Forms.Button();
             this.labelColorSeleccionado = new System.Windows.Forms.Label();
@@ -65,26 +80,12 @@ namespace VDraw
             this.deshacerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rehacerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSuppCanvas = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.buttonBrushColorSelected = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelRelleno = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
             this.panelFiguras.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panelSuppCanvas.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFiguras
@@ -216,6 +217,175 @@ namespace VDraw
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1269, 29);
             this.panel1.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.buttonBrushColorSelected);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.labelRelleno);
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.button3);
+            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.button5);
+            this.panel3.Controls.Add(this.button6);
+            this.panel3.Controls.Add(this.button7);
+            this.panel3.Controls.Add(this.button8);
+            this.panel3.Controls.Add(this.button9);
+            this.panel3.Controls.Add(this.button10);
+            this.panel3.Controls.Add(this.button11);
+            this.panel3.Location = new System.Drawing.Point(778, 2);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(491, 24);
+            this.panel3.TabIndex = 14;
+            // 
+            // buttonBrushColorSelected
+            // 
+            this.buttonBrushColorSelected.BackColor = System.Drawing.Color.White;
+            this.buttonBrushColorSelected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonBrushColorSelected.Location = new System.Drawing.Point(145, 1);
+            this.buttonBrushColorSelected.Margin = new System.Windows.Forms.Padding(1);
+            this.buttonBrushColorSelected.Name = "buttonBrushColorSelected";
+            this.buttonBrushColorSelected.Size = new System.Drawing.Size(21, 21);
+            this.buttonBrushColorSelected.TabIndex = 13;
+            this.buttonBrushColorSelected.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 13);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "Color Relleno Seleccionado";
+            // 
+            // labelRelleno
+            // 
+            this.labelRelleno.AutoSize = true;
+            this.labelRelleno.Location = new System.Drawing.Point(170, 5);
+            this.labelRelleno.Name = "labelRelleno";
+            this.labelRelleno.Size = new System.Drawing.Size(70, 13);
+            this.labelRelleno.TabIndex = 11;
+            this.labelRelleno.Text = "Color Relleno";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Purple;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button2.Location = new System.Drawing.Point(469, 1);
+            this.button2.Margin = new System.Windows.Forms.Padding(1);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(21, 21);
+            this.button2.TabIndex = 10;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.ChangeFilletColorPenPurple_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.Black;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Location = new System.Drawing.Point(244, 1);
+            this.button3.Margin = new System.Windows.Forms.Padding(1);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(21, 21);
+            this.button3.TabIndex = 1;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.ChangeFilletColorPenBlack_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Blue;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(444, 1);
+            this.button4.Margin = new System.Windows.Forms.Padding(1);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(21, 21);
+            this.button4.TabIndex = 9;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.ChangeFilletColorPenBlue_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.Location = new System.Drawing.Point(269, 1);
+            this.button5.Margin = new System.Windows.Forms.Padding(1);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(21, 21);
+            this.button5.TabIndex = 2;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.ChangeFilletColorPenWhite_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Green;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button6.Location = new System.Drawing.Point(419, 1);
+            this.button6.Margin = new System.Windows.Forms.Padding(1);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(21, 21);
+            this.button6.TabIndex = 8;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.ChangeFilletColorPenGreen_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Red;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Location = new System.Drawing.Point(294, 1);
+            this.button7.Margin = new System.Windows.Forms.Padding(1);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(21, 21);
+            this.button7.TabIndex = 3;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.ChangeFilletColorPenRed_Click);
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.Yellow;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.Location = new System.Drawing.Point(394, 1);
+            this.button8.Margin = new System.Windows.Forms.Padding(1);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(21, 21);
+            this.button8.TabIndex = 7;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.ChangeFilletColorPenYellow_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Gray;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button9.Location = new System.Drawing.Point(319, 1);
+            this.button9.Margin = new System.Windows.Forms.Padding(1);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(21, 21);
+            this.button9.TabIndex = 4;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.ChangeFilletColorPenGray_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Orange;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button10.Location = new System.Drawing.Point(369, 1);
+            this.button10.Margin = new System.Windows.Forms.Padding(1);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(21, 21);
+            this.button10.TabIndex = 6;
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.ChangeFilletColorPenOrange_Click);
+            // 
+            // button11
+            // 
+            this.button11.BackColor = System.Drawing.Color.Brown;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button11.Location = new System.Drawing.Point(344, 1);
+            this.button11.Margin = new System.Windows.Forms.Padding(1);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(21, 21);
+            this.button11.TabIndex = 5;
+            this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.ChangeFilletColorPenBrown_Click);
             // 
             // panel2
             // 
@@ -466,175 +636,6 @@ namespace VDraw
             this.panelSuppCanvas.Size = new System.Drawing.Size(1060, 679);
             this.panelSuppCanvas.TabIndex = 3;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.buttonBrushColorSelected);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.labelRelleno);
-            this.panel3.Controls.Add(this.button2);
-            this.panel3.Controls.Add(this.button3);
-            this.panel3.Controls.Add(this.button4);
-            this.panel3.Controls.Add(this.button5);
-            this.panel3.Controls.Add(this.button6);
-            this.panel3.Controls.Add(this.button7);
-            this.panel3.Controls.Add(this.button8);
-            this.panel3.Controls.Add(this.button9);
-            this.panel3.Controls.Add(this.button10);
-            this.panel3.Controls.Add(this.button11);
-            this.panel3.Location = new System.Drawing.Point(778, 2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(491, 24);
-            this.panel3.TabIndex = 14;
-            // 
-            // buttonBrushColorSelected
-            // 
-            this.buttonBrushColorSelected.BackColor = System.Drawing.Color.White;
-            this.buttonBrushColorSelected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonBrushColorSelected.Location = new System.Drawing.Point(145, 1);
-            this.buttonBrushColorSelected.Margin = new System.Windows.Forms.Padding(1);
-            this.buttonBrushColorSelected.Name = "buttonBrushColorSelected";
-            this.buttonBrushColorSelected.Size = new System.Drawing.Size(21, 21);
-            this.buttonBrushColorSelected.TabIndex = 13;
-            this.buttonBrushColorSelected.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 13);
-            this.label1.TabIndex = 12;
-            this.label1.Text = "Color Relleno Seleccionado";
-            // 
-            // labelRelleno
-            // 
-            this.labelRelleno.AutoSize = true;
-            this.labelRelleno.Location = new System.Drawing.Point(170, 5);
-            this.labelRelleno.Name = "labelRelleno";
-            this.labelRelleno.Size = new System.Drawing.Size(70, 13);
-            this.labelRelleno.TabIndex = 11;
-            this.labelRelleno.Text = "Color Relleno";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Purple;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Location = new System.Drawing.Point(469, 1);
-            this.button2.Margin = new System.Windows.Forms.Padding(1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(21, 21);
-            this.button2.TabIndex = 10;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.ChangeFilletColorPenPurple_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.Black;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Location = new System.Drawing.Point(244, 1);
-            this.button3.Margin = new System.Windows.Forms.Padding(1);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(21, 21);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.ChangeFilletColorPenBlack_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.Blue;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button4.Location = new System.Drawing.Point(444, 1);
-            this.button4.Margin = new System.Windows.Forms.Padding(1);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(21, 21);
-            this.button4.TabIndex = 9;
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.ChangeFilletColorPenBlue_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button5.Location = new System.Drawing.Point(269, 1);
-            this.button5.Margin = new System.Windows.Forms.Padding(1);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(21, 21);
-            this.button5.TabIndex = 2;
-            this.button5.UseVisualStyleBackColor = false;
-            this.button5.Click += new System.EventHandler(this.ChangeFilletColorPenWhite_Click);
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.Green;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button6.Location = new System.Drawing.Point(419, 1);
-            this.button6.Margin = new System.Windows.Forms.Padding(1);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(21, 21);
-            this.button6.TabIndex = 8;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Click += new System.EventHandler(this.ChangeFilletColorPenGreen_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.Red;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Location = new System.Drawing.Point(294, 1);
-            this.button7.Margin = new System.Windows.Forms.Padding(1);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(21, 21);
-            this.button7.TabIndex = 3;
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.ChangeFilletColorPenRed_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.Yellow;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.Location = new System.Drawing.Point(394, 1);
-            this.button8.Margin = new System.Windows.Forms.Padding(1);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(21, 21);
-            this.button8.TabIndex = 7;
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.ChangeFilletColorPenYellow_Click);
-            // 
-            // button9
-            // 
-            this.button9.BackColor = System.Drawing.Color.Gray;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button9.Location = new System.Drawing.Point(319, 1);
-            this.button9.Margin = new System.Windows.Forms.Padding(1);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(21, 21);
-            this.button9.TabIndex = 4;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.ChangeFilletColorPenGray_Click);
-            // 
-            // button10
-            // 
-            this.button10.BackColor = System.Drawing.Color.Orange;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button10.Location = new System.Drawing.Point(369, 1);
-            this.button10.Margin = new System.Windows.Forms.Padding(1);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(21, 21);
-            this.button10.TabIndex = 6;
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.ChangeFilletColorPenOrange_Click);
-            // 
-            // button11
-            // 
-            this.button11.BackColor = System.Drawing.Color.Brown;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button11.Location = new System.Drawing.Point(344, 1);
-            this.button11.Margin = new System.Windows.Forms.Padding(1);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(21, 21);
-            this.button11.TabIndex = 5;
-            this.button11.UseVisualStyleBackColor = false;
-            this.button11.Click += new System.EventHandler(this.ChangeFilletColorPenBrown_Click);
-            // 
             // MasterUIVDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -644,6 +645,7 @@ namespace VDraw
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelFiguras);
             this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MasterUIVDraw";
             this.Text = "VDraw";
@@ -651,13 +653,13 @@ namespace VDraw
             this.panelFiguras.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panelSuppCanvas.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
