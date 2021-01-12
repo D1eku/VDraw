@@ -649,6 +649,7 @@ namespace VDraw
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MasterUIVDraw";
             this.Text = "VDraw";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterUIVDraw_FormClosing);
             this.panelFiguras.ResumeLayout(false);
             this.panelFiguras.PerformLayout();
             this.panel1.ResumeLayout(false);

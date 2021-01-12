@@ -34,7 +34,7 @@ namespace VDraw
             lineColor = Color.Black;
             fillColor = Color.Transparent;
             Drawing = false;
-            isSave = false;
+            isSave = true;
         }
 
         private void panelCanvas_MouseDown(object sender, MouseEventArgs e)//Cuando haces click
@@ -451,11 +451,31 @@ namespace VDraw
             fillColor = Color.Blue;
             this.buttonBrushColorSelected.BackColor = Color.Blue;
         }
-
         private void ChangeFilletColorPenPurple_Click(object sender, EventArgs e)
         {
             fillColor = Color.Purple;
             this.buttonBrushColorSelected.BackColor = Color.Purple;
+        }
+
+        private void MasterUIVDraw_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!isSave)
+            {
+                //Mensaje para sugerir guardar el proyecto antes de abrir otro
+                string message = "¿Quieres guardar los cambios del proyecto?";
+                string caption = "Guardar proyecto";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNoCancel;
+                DialogResult result = MessageBox.Show(message, caption, buttons);//Genera un cuadro con el mensaje y los botones Si, No y Cancelar
+                                                                                 //En el caso de que quiera guardarlo
+                if (result == DialogResult.Yes)
+                {
+                    this.GuardarToolStripMenuItem_Click(sender, e);//Enviamos al método para guardar
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;//Cancela el proceso para cerrar el programa
+                }
+            }
         }
     }
 }
