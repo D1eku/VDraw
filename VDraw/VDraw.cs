@@ -222,11 +222,9 @@ namespace VDraw
                         panelCanvas.Invalidate();//Actualiza el panel
                     }
                 }
-                else
-                {
-                    this.vDraw.NewPaint();
-                    panelCanvas.Invalidate();//Actualiza el panel
-                }
+                this.vDraw.NewPaint();
+                panelCanvas.Invalidate();//Actualiza el panel
+                
             }
             catch (Exception ex)
             {
