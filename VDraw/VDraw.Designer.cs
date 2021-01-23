@@ -31,6 +31,18 @@ namespace VDraw
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterUIVDraw));
             this.panelFiguras = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.buttonApliChangesSelectedShape = new System.Windows.Forms.Button();
+            this.textBoxAnchoSelectedFig = new System.Windows.Forms.TextBox();
+            this.labelAltoSelectedFig = new System.Windows.Forms.Label();
+            this.textBoxAltoSelectedFig = new System.Windows.Forms.TextBox();
+            this.labelAnchoSelectedFig = new System.Windows.Forms.Label();
+            this.ButtonRehacer = new System.Windows.Forms.Button();
+            this.ButtonDeshacer = new System.Windows.Forms.Button();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.hexagonButton = new System.Windows.Forms.Button();
             this.diamondButton = new System.Windows.Forms.Button();
             this.labelFigurasInPanelFiguras = new System.Windows.Forms.Label();
@@ -40,7 +52,6 @@ namespace VDraw
             this.squareButton = new System.Windows.Forms.Button();
             this.buttonCircle = new System.Windows.Forms.Button();
             this.botonTriangulo = new System.Windows.Forms.Button();
-            this.panelCanvas = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.buttonBrushColorSelected = new System.Windows.Forms.Button();
@@ -80,16 +91,25 @@ namespace VDraw
             this.deshacerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rehacerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSuppCanvas = new System.Windows.Forms.Panel();
+            this.panelCanvas = new System.Windows.Forms.Panel();
             this.panelFiguras.SuspendLayout();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.panelSuppCanvas.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelFiguras
             // 
+            this.panelFiguras.Controls.Add(this.panel4);
+            this.panelFiguras.Controls.Add(this.ButtonRehacer);
+            this.panelFiguras.Controls.Add(this.ButtonDeshacer);
+            this.panelFiguras.Controls.Add(this.numericUpDown1);
+            this.panelFiguras.Controls.Add(this.button13);
+            this.panelFiguras.Controls.Add(this.button1);
+            this.panelFiguras.Controls.Add(this.button12);
             this.panelFiguras.Controls.Add(this.hexagonButton);
             this.panelFiguras.Controls.Add(this.diamondButton);
             this.panelFiguras.Controls.Add(this.labelFigurasInPanelFiguras);
@@ -104,11 +124,120 @@ namespace VDraw
             this.panelFiguras.Size = new System.Drawing.Size(201, 679);
             this.panelFiguras.TabIndex = 0;
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.buttonApliChangesSelectedShape);
+            this.panel4.Controls.Add(this.textBoxAnchoSelectedFig);
+            this.panel4.Controls.Add(this.labelAltoSelectedFig);
+            this.panel4.Controls.Add(this.textBoxAltoSelectedFig);
+            this.panel4.Controls.Add(this.labelAnchoSelectedFig);
+            this.panel4.Location = new System.Drawing.Point(3, 568);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(194, 76);
+            this.panel4.TabIndex = 0;
+            // 
+            // buttonApliChangesSelectedShape
+            // 
+            this.buttonApliChangesSelectedShape.Location = new System.Drawing.Point(40, 37);
+            this.buttonApliChangesSelectedShape.Name = "buttonApliChangesSelectedShape";
+            this.buttonApliChangesSelectedShape.Size = new System.Drawing.Size(115, 28);
+            this.buttonApliChangesSelectedShape.TabIndex = 15;
+            this.buttonApliChangesSelectedShape.Text = "AplicarCambios";
+            this.buttonApliChangesSelectedShape.UseVisualStyleBackColor = true;
+            this.buttonApliChangesSelectedShape.Click += new System.EventHandler(this.ApliChangesSelectedShape_OnClick);
+            // 
+            // textBoxAnchoSelectedFig
+            // 
+            this.textBoxAnchoSelectedFig.Location = new System.Drawing.Point(40, 8);
+            this.textBoxAnchoSelectedFig.Name = "textBoxAnchoSelectedFig";
+            this.textBoxAnchoSelectedFig.Size = new System.Drawing.Size(53, 20);
+            this.textBoxAnchoSelectedFig.TabIndex = 21;
+            // 
+            // labelAltoSelectedFig
+            // 
+            this.labelAltoSelectedFig.AutoSize = true;
+            this.labelAltoSelectedFig.Location = new System.Drawing.Point(102, 11);
+            this.labelAltoSelectedFig.Name = "labelAltoSelectedFig";
+            this.labelAltoSelectedFig.Size = new System.Drawing.Size(25, 13);
+            this.labelAltoSelectedFig.TabIndex = 16;
+            this.labelAltoSelectedFig.Text = "Alto";
+            // 
+            // textBoxAltoSelectedFig
+            // 
+            this.textBoxAltoSelectedFig.Location = new System.Drawing.Point(133, 8);
+            this.textBoxAltoSelectedFig.Name = "textBoxAltoSelectedFig";
+            this.textBoxAltoSelectedFig.Size = new System.Drawing.Size(53, 20);
+            this.textBoxAltoSelectedFig.TabIndex = 15;
+            // 
+            // labelAnchoSelectedFig
+            // 
+            this.labelAnchoSelectedFig.AutoSize = true;
+            this.labelAnchoSelectedFig.Location = new System.Drawing.Point(2, 11);
+            this.labelAnchoSelectedFig.Name = "labelAnchoSelectedFig";
+            this.labelAnchoSelectedFig.Size = new System.Drawing.Size(38, 13);
+            this.labelAnchoSelectedFig.TabIndex = 17;
+            this.labelAnchoSelectedFig.Text = "Ancho";
+            // 
+            // ButtonRehacer
+            // 
+            this.ButtonRehacer.Location = new System.Drawing.Point(118, 650);
+            this.ButtonRehacer.Name = "ButtonRehacer";
+            this.ButtonRehacer.Size = new System.Drawing.Size(79, 26);
+            this.ButtonRehacer.TabIndex = 14;
+            this.ButtonRehacer.Text = "Rehacer";
+            this.ButtonRehacer.UseVisualStyleBackColor = true;
+            // 
+            // ButtonDeshacer
+            // 
+            this.ButtonDeshacer.Location = new System.Drawing.Point(3, 650);
+            this.ButtonDeshacer.Name = "ButtonDeshacer";
+            this.ButtonDeshacer.Size = new System.Drawing.Size(79, 26);
+            this.ButtonDeshacer.TabIndex = 13;
+            this.ButtonDeshacer.Text = "Deshacer";
+            this.ButtonDeshacer.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(118, 499);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDown1.TabIndex = 0;
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(17, 488);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(65, 38);
+            this.button13.TabIndex = 11;
+            this.button13.Text = "Tamaño Pincel";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.ChangeLineSizeSelectedShape_OnClick);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(102, 426);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(90, 38);
+            this.button12.TabIndex = 10;
+            this.button12.Text = "PintarContorno";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.PaintLine_OnClick);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, 426);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(91, 38);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "PintarRelleno";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.PaintFill_OnClick);
+            // 
             // hexagonButton
             // 
-            this.hexagonButton.Location = new System.Drawing.Point(3, 366);
+            this.hexagonButton.Location = new System.Drawing.Point(3, 309);
             this.hexagonButton.Name = "hexagonButton";
-            this.hexagonButton.Size = new System.Drawing.Size(194, 38);
+            this.hexagonButton.Size = new System.Drawing.Size(194, 32);
             this.hexagonButton.TabIndex = 8;
             this.hexagonButton.Text = "Hexagono";
             this.hexagonButton.UseVisualStyleBackColor = true;
@@ -116,9 +245,9 @@ namespace VDraw
             // 
             // diamondButton
             // 
-            this.diamondButton.Location = new System.Drawing.Point(3, 234);
+            this.diamondButton.Location = new System.Drawing.Point(3, 195);
             this.diamondButton.Name = "diamondButton";
-            this.diamondButton.Size = new System.Drawing.Size(194, 38);
+            this.diamondButton.Size = new System.Drawing.Size(194, 32);
             this.diamondButton.TabIndex = 7;
             this.diamondButton.Text = "Rombo";
             this.diamondButton.UseVisualStyleBackColor = true;
@@ -128,7 +257,7 @@ namespace VDraw
             // 
             this.labelFigurasInPanelFiguras.AutoSize = true;
             this.labelFigurasInPanelFiguras.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Bold);
-            this.labelFigurasInPanelFiguras.Location = new System.Drawing.Point(3, 17);
+            this.labelFigurasInPanelFiguras.Location = new System.Drawing.Point(3, 0);
             this.labelFigurasInPanelFiguras.Name = "labelFigurasInPanelFiguras";
             this.labelFigurasInPanelFiguras.Size = new System.Drawing.Size(138, 39);
             this.labelFigurasInPanelFiguras.TabIndex = 6;
@@ -136,9 +265,9 @@ namespace VDraw
             // 
             // buttonEllipse
             // 
-            this.buttonEllipse.Location = new System.Drawing.Point(3, 103);
+            this.buttonEllipse.Location = new System.Drawing.Point(3, 81);
             this.buttonEllipse.Name = "buttonEllipse";
-            this.buttonEllipse.Size = new System.Drawing.Size(194, 38);
+            this.buttonEllipse.Size = new System.Drawing.Size(194, 32);
             this.buttonEllipse.TabIndex = 5;
             this.buttonEllipse.Text = "Elipse";
             this.buttonEllipse.UseVisualStyleBackColor = true;
@@ -146,9 +275,9 @@ namespace VDraw
             // 
             // buttonPentagono
             // 
-            this.buttonPentagono.Location = new System.Drawing.Point(3, 322);
+            this.buttonPentagono.Location = new System.Drawing.Point(3, 271);
             this.buttonPentagono.Name = "buttonPentagono";
-            this.buttonPentagono.Size = new System.Drawing.Size(194, 38);
+            this.buttonPentagono.Size = new System.Drawing.Size(194, 32);
             this.buttonPentagono.TabIndex = 4;
             this.buttonPentagono.Text = "Pentagono";
             this.buttonPentagono.UseVisualStyleBackColor = true;
@@ -156,9 +285,9 @@ namespace VDraw
             // 
             // buttonRectangulo
             // 
-            this.buttonRectangulo.Location = new System.Drawing.Point(3, 190);
+            this.buttonRectangulo.Location = new System.Drawing.Point(3, 157);
             this.buttonRectangulo.Name = "buttonRectangulo";
-            this.buttonRectangulo.Size = new System.Drawing.Size(194, 38);
+            this.buttonRectangulo.Size = new System.Drawing.Size(194, 32);
             this.buttonRectangulo.TabIndex = 3;
             this.buttonRectangulo.Text = "Rectangulo";
             this.buttonRectangulo.UseVisualStyleBackColor = true;
@@ -166,9 +295,9 @@ namespace VDraw
             // 
             // squareButton
             // 
-            this.squareButton.Location = new System.Drawing.Point(3, 147);
+            this.squareButton.Location = new System.Drawing.Point(3, 119);
             this.squareButton.Name = "squareButton";
-            this.squareButton.Size = new System.Drawing.Size(194, 38);
+            this.squareButton.Size = new System.Drawing.Size(194, 32);
             this.squareButton.TabIndex = 2;
             this.squareButton.Text = "Cuadrado";
             this.squareButton.UseVisualStyleBackColor = true;
@@ -176,9 +305,9 @@ namespace VDraw
             // 
             // buttonCircle
             // 
-            this.buttonCircle.Location = new System.Drawing.Point(3, 59);
+            this.buttonCircle.Location = new System.Drawing.Point(3, 43);
             this.buttonCircle.Name = "buttonCircle";
-            this.buttonCircle.Size = new System.Drawing.Size(194, 38);
+            this.buttonCircle.Size = new System.Drawing.Size(194, 32);
             this.buttonCircle.TabIndex = 1;
             this.buttonCircle.Text = "Circulo";
             this.buttonCircle.UseVisualStyleBackColor = true;
@@ -186,27 +315,13 @@ namespace VDraw
             // 
             // botonTriangulo
             // 
-            this.botonTriangulo.Location = new System.Drawing.Point(3, 278);
+            this.botonTriangulo.Location = new System.Drawing.Point(3, 233);
             this.botonTriangulo.Name = "botonTriangulo";
-            this.botonTriangulo.Size = new System.Drawing.Size(194, 38);
+            this.botonTriangulo.Size = new System.Drawing.Size(194, 32);
             this.botonTriangulo.TabIndex = 0;
             this.botonTriangulo.Text = "Triangulo";
             this.botonTriangulo.UseVisualStyleBackColor = true;
             this.botonTriangulo.Click += new System.EventHandler(this.ButtonTriangle_Click);
-            // 
-            // panelCanvas
-            // 
-            this.panelCanvas.BackColor = System.Drawing.Color.White;
-            this.panelCanvas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCanvas.Location = new System.Drawing.Point(0, 0);
-            this.panelCanvas.Name = "panelCanvas";
-            this.panelCanvas.Size = new System.Drawing.Size(1060, 679);
-            this.panelCanvas.TabIndex = 1;
-            this.panelCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelCanvas_Paint);
-            this.panelCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseDown);
-            this.panelCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelCanvas_MouseMove);
-            this.panelCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseUp);
             // 
             // panel1
             // 
@@ -629,18 +744,30 @@ namespace VDraw
             // 
             // panelSuppCanvas
             // 
-            this.panelSuppCanvas.Controls.Add(this.panelCanvas);
             this.panelSuppCanvas.Location = new System.Drawing.Point(212, 36);
             this.panelSuppCanvas.Margin = new System.Windows.Forms.Padding(200, 3, 3, 3);
             this.panelSuppCanvas.Name = "panelSuppCanvas";
             this.panelSuppCanvas.Size = new System.Drawing.Size(1060, 679);
             this.panelSuppCanvas.TabIndex = 3;
             // 
+            // panelCanvas
+            // 
+            this.panelCanvas.BackColor = System.Drawing.Color.White;
+            this.panelCanvas.Location = new System.Drawing.Point(212, 36);
+            this.panelCanvas.Name = "panelCanvas";
+            this.panelCanvas.Size = new System.Drawing.Size(1059, 679);
+            this.panelCanvas.TabIndex = 0;
+            this.panelCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelCanvas_Paint);
+            this.panelCanvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseDown);
+            this.panelCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelCanvas_MouseMove);
+            this.panelCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelCanvas_MouseUp);
+            // 
             // MasterUIVDraw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1284, 727);
+            this.Controls.Add(this.panelCanvas);
             this.Controls.Add(this.panelSuppCanvas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelFiguras);
@@ -652,6 +779,9 @@ namespace VDraw
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MasterUIVDraw_FormClosing);
             this.panelFiguras.ResumeLayout(false);
             this.panelFiguras.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -660,7 +790,6 @@ namespace VDraw
             this.panel2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panelSuppCanvas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -674,7 +803,6 @@ namespace VDraw
         private System.Windows.Forms.Button squareButton;
         private System.Windows.Forms.Button buttonCircle;
         private System.Windows.Forms.Button buttonEllipse;
-        private System.Windows.Forms.Panel panelCanvas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ArchivoToolStripMenuItem;
@@ -717,6 +845,19 @@ namespace VDraw
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button ButtonRehacer;
+        private System.Windows.Forms.Button ButtonDeshacer;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.TextBox textBoxAnchoSelectedFig;
+        private System.Windows.Forms.Label labelAltoSelectedFig;
+        private System.Windows.Forms.TextBox textBoxAltoSelectedFig;
+        private System.Windows.Forms.Label labelAnchoSelectedFig;
+        private System.Windows.Forms.Button buttonApliChangesSelectedShape;
+        private System.Windows.Forms.Panel panelCanvas;
     }
 }
 

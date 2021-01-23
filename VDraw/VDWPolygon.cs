@@ -35,6 +35,11 @@ namespace VDraw
         public void ChangeRadius(float radius)
         {
             this.radius = radius;
+            GraphicsPath gp = base.GetGraphicsPath();
+            gp.Reset();
+            gp.StartFigure();//Comienza a dibujar
+            gp.AddPolygon(CalculateVertices(startAngle, radius, GetCenter(), sides));//Dibuja un polygono por cada vertice
+            gp.CloseFigure();//Termina de dibujar
         }
         public void ChangeStartAngle(float startAngle)
         {
@@ -83,6 +88,14 @@ namespace VDraw
         {
             return "P," + this.GetLineColor().ToArgb() + "," + this.GetFillColor().ToArgb() + "," + this.GetLineSize() + "," + this.GetCenter().X + "," + this.GetCenter().Y
                 + "," + this.radius + "," + this.startAngle + "," + this.sides;
+        }
+        public override GraphicsPath GetPathContornShape()
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.StartFigure();
+            gp.AddPolygon(CalculateVertices(startAngle, radius, GetCenter(), sides));
+            gp.CloseFigure();//Termina la figura
+            return gp;
         }
     }
 }

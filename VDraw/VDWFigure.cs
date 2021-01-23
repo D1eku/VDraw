@@ -78,5 +78,7 @@ namespace VDraw
         public void SetGraphicsPath(GraphicsPath gp) { this.gp = gp; }
 
         public void SetSelected(bool state) { this.Selected = false; }
+
+        public abstract GraphicsPath GetPathContornShape();
     }
 }

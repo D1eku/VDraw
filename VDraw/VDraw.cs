@@ -43,10 +43,12 @@ namespace VDraw
             mouseX = e.X;//Genera la informacion del mouse
             mouseY = e.Y;//Genera la otra informacion del mouse.
             Point p = new Point(mouseX, mouseY);//Genera un punto
-            
-            if (!vDraw.HaveSelected())//Si no tienes una figura seleccionada.
+            vDraw.IsTouchingShape(p);//Revisa si ese punto hay figura
+            if (vDraw.HaveSelected())
             {
-                vDraw.IsTouchingShape(p);
+                textBoxAltoSelectedFig.Text = ""+vDraw.GetHeightSelectedShape();
+                textBoxAnchoSelectedFig.Text = ""+vDraw.GetWidthSelectedShape();
+
             }
             panelCanvas.Invalidate();//Actualiz el panel
         }
@@ -59,9 +61,8 @@ namespace VDraw
                 if (vDraw.HaveSelected())// Y tienes una figura seleccionada.
                 {
                     vDraw.MoveShape(p);//Muevela.
-                    panelCanvas.Invalidate();//Actualiza el panel
                 }
-
+                panelCanvas.Invalidate();//Actualiza el panel
             }
         }
 
@@ -73,65 +74,78 @@ namespace VDraw
                 isSave = false;
                 if (Drawing)//Si estas dibujando.
                 {
+                    int PenSize = 5;//Int32.Parse(PenSizeList.SelectedItem.ToString());//Hay que configurar el comboBox para que no pueda tener mas de 100 elementos
                     // Circle
                     if (shapeSelected == 1)
                     {
-                        vDraw.DrawEllipse(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 45f);
+                        vDraw.DrawEllipse(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 45f, 45f);
                         
                     }
                     //Ellipse
                     else if (shapeSelected == 2)
                     {
-                        vDraw.DrawEllipse(lineColor, fillColor, 6, new Point(mouseX, mouseY), 60f, 30f);
+                        vDraw.DrawEllipse(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 60f, 30f);
                         
                     }
                     //Square
                     else if (shapeSelected == 3)
                     {
-                        vDraw.DrawRectangle(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 45f);
+                        vDraw.DrawRectangle(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 45f, 45f);
                         
                     }
                     //Rectangle
                     else if (shapeSelected == 4)
                     {
-                        vDraw.DrawRectangle(lineColor, fillColor, 6, new Point(mouseX, mouseY), 60f, 30f);
+                        vDraw.DrawRectangle(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 60f, 30f);
                         
                     }
                     //Diamond
                     else if (shapeSelected == 5)
                     {
-                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 0f, 4);
+                        vDraw.DrawPolygon(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 45f, 0f, 4);
                         
                     }
                     //Triangle
                     else if (shapeSelected == 6)
                     {
-                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 90f, 3);
+                        vDraw.DrawPolygon(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 45f, 90f, 3);
                         
                     }
                     //Pentagon
                     else if (shapeSelected == 7)
                     {
-                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 18.5f, 5);
+                        vDraw.DrawPolygon(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 45f, 18.5f, 5);
                        
                     }
                     //Hexagon
                     else
                     {
-                        vDraw.DrawPolygon(lineColor, fillColor, 6, new Point(mouseX, mouseY), 45f, 0f, 6);
+                        vDraw.DrawPolygon(lineColor, fillColor, PenSize, new Point(mouseX, mouseY), 45f, 0f, 6);
                         
                     }
                     Drawing = false;//Deja de dibujar.
+                    panelCanvas.Invalidate();//Actualiza el panel
                 }
             }
 
-            vDraw.DeselectShape();
-            panelCanvas.Invalidate();//Actualiza el panel
+            //vDraw.DeselectShape();//No deberias deseleccionar la figura hasta que hagas click otra parte del mapa
         }
 
         private void PanelCanvas_Paint(object sender, PaintEventArgs e)
         {
             vDraw.RePaint();
+            if (vDraw.HaveSelected())
+            {
+                textBoxAltoSelectedFig.Text = "" + vDraw.GetHeightSelectedShape();
+                
+                textBoxAnchoSelectedFig.Text = "" + vDraw.GetWidthSelectedShape();
+
+            }
+            else
+            {
+                textBoxAltoSelectedFig.Text = "0";
+                textBoxAnchoSelectedFig.Text = "0";
+            }
         }
 
         /*Esta funcion es para cargar o abrir un archivo con formato .vdw */
@@ -453,6 +467,57 @@ namespace VDraw
         {
             fillColor = Color.Purple;
             this.buttonBrushColorSelected.BackColor = Color.Purple;
+        }
+
+        private void PaintFill_OnClick(object sender, EventArgs e)
+        {
+            vDraw.ChangeColorFillSelectedShape(fillColor);
+        }
+
+        private void PaintLine_OnClick(object sender, EventArgs e)
+        {
+            vDraw.ChangeColorLineSelectedShape(lineColor);
+        }
+
+        private void ChangePenSize_SelectedIndex(object sender, EventArgs e)
+        {
+            vDraw.ChangePenSize(100);
+        }
+
+        private void ChangeLineSizeSelectedShape_OnClick(object sender, EventArgs e)
+        {
+            int PenSize = 2;//Int32.Parse(PenSizeList.SelectedItem.ToString()); 
+            vDraw.ChangeLineSizeSelectedShape(PenSize);
+            panelCanvas.Invalidate();
+        }
+
+        private void ApliChangesSelectedShape_OnClick(object sender, EventArgs e)
+        {
+            if (vDraw.HaveSelected())
+            {
+                Console.WriteLine("Tienes figura seleccionada ");
+                try
+                {
+                    int nuevoAlto = Int32.Parse(textBoxAltoSelectedFig.Text);
+                    int nuevoAncho = Int32.Parse(textBoxAnchoSelectedFig.Text);
+                    Console.WriteLine("Pasaste el parse ");
+                    if (nuevoAlto > 0)
+                    {
+                        Console.WriteLine("Es mayor que 0 ");
+                        vDraw.ChangeHeightSelectedShape(nuevoAlto);
+                    }
+                    if (nuevoAncho > 0)
+                    {
+                        Console.WriteLine("Es mayor que 0");
+                        vDraw.ChangeWidthSelectedShape(nuevoAncho);
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("no se pudo hacer parse xd");
+                }
+                panelCanvas.Invalidate();
+            }
         }
 
         private void MasterUIVDraw_FormClosing(object sender, FormClosingEventArgs e)

@@ -29,10 +29,22 @@ namespace VDraw
         public void ChangeWidth(float width)
         {
             this.width = width;
+            GraphicsPath gp = base.GetGraphicsPath();
+            gp.Reset();
+            gp.StartFigure();
+            RectangleF rect = new RectangleF(base.GetCenter().X - width, base.GetCenter().Y - height, 2 * width, 2 * height);
+            gp.AddRectangle(rect);
+            gp.CloseFigure();//Termina la figura
         }
         public void ChangeHeight(float height)
         {
             this.height = height;
+            GraphicsPath gp = base.GetGraphicsPath();
+            gp.Reset();
+            gp.StartFigure();
+            RectangleF rect = new RectangleF(base.GetCenter().X - width, base.GetCenter().Y - height, 2 * width, 2 * height);
+            gp.AddRectangle(rect);
+            gp.CloseFigure();//Termina la figura
         }
 
         public override void Move(Point center)
@@ -52,6 +64,16 @@ namespace VDraw
         {
             return "R," + this.GetLineColor().ToArgb() + "," + this.GetFillColor().ToArgb() + "," + this.GetLineSize() + "," + this.GetCenter().X + "," + this.GetCenter().Y
                 + "," + this.width + "," + this.height;
+        }
+
+        public override GraphicsPath GetPathContornShape()
+        {
+            GraphicsPath gp = new GraphicsPath();
+            gp.StartFigure();
+            RectangleF tempRect = new RectangleF(base.GetCenter().X - width , base.GetCenter().Y - height , 2 * width , 2 * height );
+            gp.AddRectangle(tempRect);
+            gp.CloseFigure();//Termina la figura
+            return gp;
         }
     }
 }

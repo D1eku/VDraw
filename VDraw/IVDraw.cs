@@ -22,5 +22,13 @@ namespace VDraw
         string SaveFile();
         void OpenFile(string file);
         void RegisterKey();
+        void ChangeColorFillSelectedShape(Color c);
+        void ChangeColorLineSelectedShape(Color c);
+        void ChangePenSize(int size);
+        void ChangeLineSizeSelectedShape(int size);
+        float GetHeightSelectedShape();
+        float GetWidthSelectedShape();
+        void ChangeHeightSelectedShape(int newHeight);
+        void ChangeWidthSelectedShape(int newWidth);
     }
 }

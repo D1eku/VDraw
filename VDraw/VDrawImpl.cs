@@ -16,6 +16,7 @@ namespace VDraw
         private List<VDWFigure> figures;
         private Graphics canvas;
         private int penSize = 100;
+        private GraphicsPath selectedPath = null;
         private VDWFigure selectedShape = null;
 
         public VDrawImpl(Panel p)
@@ -89,31 +90,37 @@ namespace VDraw
                 if (f.IsSelected(mouseClick))//revisa si esa figura es tocada en el punto indicado
                 {//Si lo es entonces
                     selectedShape = f;
+                    canvas.DrawPath(new Pen(Color.Red, 5),f.GetPathContornShape());
                     return true;//Retorna si
                 }
             }
-            selectedShape = null;
+            Console.WriteLine("No se selecciono ninguna figura xd");
+            selectedShape = null;//Y desseleccion la shape
             return false;//Si no tocaste ninguna figura retorna que no.
         }
         public void RePaint()
         {
-            canvas.Clear(Color.White);
+            //canvas.Clear(Color.White);
             for (int i = 0; i < this.figures.Count; i++)
             {
                 VDWFigure f = figures.ElementAt<VDWFigure>(i);
                 GraphicsPath gp = f.GetGraphicsPath();
                 Pen pen = new Pen(f.GetLineColor(), f.GetLineSize());
-                pen.StartCap = System.Drawing.Drawing2D.LineCap.Round;
-                pen.EndCap = System.Drawing.Drawing2D.LineCap.Round;
+                pen.StartCap = LineCap.Round;
+                pen.EndCap = LineCap.Round;
                 canvas.DrawPath(pen, gp);
                 canvas.FillPath(new SolidBrush(f.GetFillColor()), gp); 
+            }
+            if (HaveSelected())
+            {
+                canvas.DrawPath(new Pen(Color.Red, 2), selectedShape.GetPathContornShape());
             }
         }
         public void MoveShape(Point x)
         {
             VDWFigure f = selectedShape;
 
-            if(f != null)//Si hay una figura, muevela.
+            if (f != null)//Si hay una figura, muevela.
             {
                 f.Move(x);
             }
@@ -253,5 +260,107 @@ namespace VDraw
             c3.Close();
         }
 
+        public void ChangeColorFillSelectedShape(Color c)
+        {
+            if (HaveSelected())
+            {
+                selectedShape.ChangeFillColor(c);
+            }
+        }
+
+        public void ChangeColorLineSelectedShape(Color c)
+        {
+            if (HaveSelected())
+            {
+                selectedShape.ChangeLineColor(c);
+            }
+        }
+
+        public void ChangePenSize(int size)
+        {
+            this.penSize = size;
+        }
+
+        public void ChangeLineSizeSelectedShape(int size)
+        {
+            if (HaveSelected()){
+                selectedShape.ChangeLineSize(size);
+            }
+        }
+
+        public float GetHeightSelectedShape()
+        {
+            if (HaveSelected())
+            {
+                if(selectedShape is VDWEllipse){
+                    return ((VDWEllipse)selectedShape).GetA();
+                }
+                else if(selectedShape is VDWPolygon)
+                {
+                    return ((VDWPolygon)selectedShape).GetRadius();
+                }
+                else if(selectedShape is VDWRectangle)
+                {
+                    return ((VDWRectangle) selectedShape).GetHeight();
+                }
+            }
+            return 0;
+        }
+
+        public float GetWidthSelectedShape()
+        {
+            if (HaveSelected())
+            {
+                if (selectedShape is VDWEllipse)
+                {
+                    return ((VDWEllipse)selectedShape).GetB();
+                }
+                else if (selectedShape is VDWPolygon)
+                {
+                    return 0;
+                }
+                else if (selectedShape is VDWRectangle)
+                {
+                    return ((VDWRectangle)selectedShape).GetWidth();
+                }
+            }
+            return 0;
+        }
+
+        public void ChangeHeightSelectedShape(int newHeight)
+        {
+            //selectedShape
+            if (HaveSelected())
+            {
+                if (selectedShape is VDWEllipse)
+                {
+                    ((VDWEllipse)selectedShape).ChangeHeight(newHeight);
+                }
+                else if (selectedShape is VDWPolygon)
+                {
+                    ((VDWPolygon)selectedShape).ChangeRadius(newHeight);
+                }
+                else if (selectedShape is VDWRectangle)
+                {
+                    ((VDWRectangle)selectedShape).ChangeHeight(newHeight);
+                }
+            }
+
+        }
+
+        public void ChangeWidthSelectedShape(int newWidth)
+        {
+            if (HaveSelected())
+            {
+                if (selectedShape is VDWEllipse)
+                {
+                    ((VDWEllipse)selectedShape).ChangeA(newWidth);
+                }
+                else if (selectedShape is VDWRectangle)
+                {
+                    ((VDWRectangle)selectedShape).ChangeWidth(newWidth);
+                }
+            }
+        }
     }
 }
