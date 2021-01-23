@@ -113,7 +113,7 @@ namespace VDraw
             }
             if (HaveSelected())
             {
-                canvas.DrawPath(new Pen(Color.Red, 2), selectedShape.GetPathContornShape());
+                canvas.DrawPath(new Pen(Color.Red, 5), selectedShape.GetPathContornShape());
             }
         }
         public void MoveShape(Point x)

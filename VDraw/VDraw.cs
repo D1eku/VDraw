@@ -35,6 +35,7 @@ namespace VDraw
             fillColor = Color.Transparent;
             Drawing = false;
             isSave = true;
+            numericUpDownTamanoPincel.Text = "1";
         }
 
         private void panelCanvas_MouseDown(object sender, MouseEventArgs e)//Cuando haces click
@@ -74,7 +75,7 @@ namespace VDraw
                 isSave = false;
                 if (Drawing)//Si estas dibujando.
                 {
-                    int PenSize = 5;//Int32.Parse(PenSizeList.SelectedItem.ToString());//Hay que configurar el comboBox para que no pueda tener mas de 100 elementos
+                    int PenSize = Int32.Parse(numericUpDownTamanoPincel.Text);//Hay que configurar el comboBox para que no pueda tener mas de 100 elementos
                     // Circle
                     if (shapeSelected == 1)
                     {
@@ -486,7 +487,7 @@ namespace VDraw
 
         private void ChangeLineSizeSelectedShape_OnClick(object sender, EventArgs e)
         {
-            int PenSize = 2;//Int32.Parse(PenSizeList.SelectedItem.ToString()); 
+            int PenSize = Int32.Parse(numericUpDownTamanoPincel.Text); 
             vDraw.ChangeLineSizeSelectedShape(PenSize);
             panelCanvas.Invalidate();
         }

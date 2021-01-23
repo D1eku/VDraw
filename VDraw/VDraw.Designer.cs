@@ -39,7 +39,7 @@ namespace VDraw
             this.labelAnchoSelectedFig = new System.Windows.Forms.Label();
             this.ButtonRehacer = new System.Windows.Forms.Button();
             this.ButtonDeshacer = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDownTamanoPincel = new System.Windows.Forms.NumericUpDown();
             this.button13 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -94,7 +94,7 @@ namespace VDraw
             this.panelCanvas = new System.Windows.Forms.Panel();
             this.panelFiguras.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTamanoPincel)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -106,7 +106,7 @@ namespace VDraw
             this.panelFiguras.Controls.Add(this.panel4);
             this.panelFiguras.Controls.Add(this.ButtonRehacer);
             this.panelFiguras.Controls.Add(this.ButtonDeshacer);
-            this.panelFiguras.Controls.Add(this.numericUpDown1);
+            this.panelFiguras.Controls.Add(this.numericUpDownTamanoPincel);
             this.panelFiguras.Controls.Add(this.button13);
             this.panelFiguras.Controls.Add(this.button1);
             this.panelFiguras.Controls.Add(this.button12);
@@ -196,12 +196,12 @@ namespace VDraw
             this.ButtonDeshacer.Text = "Deshacer";
             this.ButtonDeshacer.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // numericUpDownTamanoPincel
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(118, 499);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(39, 20);
-            this.numericUpDown1.TabIndex = 0;
+            this.numericUpDownTamanoPincel.Location = new System.Drawing.Point(118, 499);
+            this.numericUpDownTamanoPincel.Name = "numericUpDownTamanoPincel";
+            this.numericUpDownTamanoPincel.Size = new System.Drawing.Size(39, 20);
+            this.numericUpDownTamanoPincel.TabIndex = 0;
             // 
             // button13
             // 
@@ -781,7 +781,7 @@ namespace VDraw
             this.panelFiguras.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTamanoPincel)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -850,7 +850,7 @@ namespace VDraw
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button ButtonRehacer;
         private System.Windows.Forms.Button ButtonDeshacer;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDownTamanoPincel;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox textBoxAnchoSelectedFig;
         private System.Windows.Forms.Label labelAltoSelectedFig;
