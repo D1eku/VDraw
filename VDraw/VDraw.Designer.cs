@@ -41,8 +41,8 @@ namespace VDraw
             this.ButtonDeshacer = new System.Windows.Forms.Button();
             this.numericUpDownTamanoPincel = new System.Windows.Forms.NumericUpDown();
             this.button13 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.hexagonButton = new System.Windows.Forms.Button();
             this.diamondButton = new System.Windows.Forms.Button();
             this.labelFigurasInPanelFiguras = new System.Windows.Forms.Label();
@@ -213,16 +213,6 @@ namespace VDraw
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.ChangeLineSizeSelectedShape_OnClick);
             // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(102, 426);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(90, 38);
-            this.button12.TabIndex = 10;
-            this.button12.Text = "PintarContorno";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.PaintLine_OnClick);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(5, 426);
@@ -232,6 +222,16 @@ namespace VDraw
             this.button1.Text = "PintarRelleno";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.PaintFill_OnClick);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(102, 426);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(90, 38);
+            this.button12.TabIndex = 10;
+            this.button12.Text = "PintarContorno";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.PaintLine_OnClick);
             // 
             // hexagonButton
             // 
@@ -753,6 +753,7 @@ namespace VDraw
             // panelCanvas
             // 
             this.panelCanvas.BackColor = System.Drawing.Color.White;
+            this.panelCanvas.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelCanvas.Location = new System.Drawing.Point(212, 36);
             this.panelCanvas.Name = "panelCanvas";
             this.panelCanvas.Size = new System.Drawing.Size(1059, 679);
